@@ -4,255 +4,385 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>IndabaX Cameroon 2026 — Programme</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
-    --green-deep: #1B4332;
-    --green-mid: #2D6A4F;
-    --green-light: #52B788;
-    --gold: #E6A817;
-    --red: #C83C28;
-    --bg: #F7F6F1;
-    --card: #FFFFFF;
-    --text: #1a1a1a;
+    --bg: #0C1A12;
+    --surface: #12231A;
+    --card: rgba(255,255,255,0.04);
+    --card-border: rgba(255,255,255,0.08);
+    --gold: #D4A24C;
+    --gold-light: #F0C97B;
+    --gold-glow: rgba(212,162,76,0.15);
+    --green: #3DA67A;
+    --green-light: #5FD4A1;
+    --text: #E8E4DC;
+    --text-dim: rgba(232,228,220,0.5);
+    --text-muted: rgba(232,228,220,0.3);
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
-    font-family: 'DM Sans', 'Segoe UI', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     background: var(--bg); color: var(--text);
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
   }
 
+  /* ═══ HERO ═══ */
   .hero {
-    background: linear-gradient(135deg, #1B4332 0%, #2D6A4F 40%, #40916C 70%, #52B788 100%);
-    padding: 32px 24px 40px; text-align: center;
-    position: relative; overflow: hidden;
+    position: relative; padding: 48px 24px 56px;
+    text-align: center; overflow: hidden;
+    background: radial-gradient(ellipse at 50% 0%, rgba(61,166,122,0.12) 0%, transparent 60%),
+                radial-gradient(ellipse at 20% 100%, rgba(212,162,76,0.08) 0%, transparent 50%),
+                var(--bg);
   }
-  .hero::before {
-    content: ''; position: absolute; inset: 0; opacity: 0.06;
+
+  /* Animated geometric pattern */
+  .hero-pattern {
+    position: absolute; inset: 0; opacity: 0.04;
     background-image:
-      repeating-linear-gradient(60deg, transparent, transparent 28px, #fff 28px, #fff 29px),
-      repeating-linear-gradient(-60deg, transparent, transparent 28px, #fff 28px, #fff 29px);
+      linear-gradient(30deg, var(--gold) 12%, transparent 12.5%, transparent 87%, var(--gold) 87.5%, var(--gold)),
+      linear-gradient(150deg, var(--gold) 12%, transparent 12.5%, transparent 87%, var(--gold) 87.5%, var(--gold)),
+      linear-gradient(30deg, var(--gold) 12%, transparent 12.5%, transparent 87%, var(--gold) 87.5%, var(--gold)),
+      linear-gradient(150deg, var(--gold) 12%, transparent 12.5%, transparent 87%, var(--gold) 87.5%, var(--gold)),
+      linear-gradient(60deg, rgba(212,162,76,0.6) 25%, transparent 25.5%, transparent 75%, rgba(212,162,76,0.6) 75%),
+      linear-gradient(60deg, rgba(212,162,76,0.6) 25%, transparent 25.5%, transparent 75%, rgba(212,162,76,0.6) 75%);
+    background-size: 40px 70px;
+    background-position: 0 0, 0 0, 20px 35px, 20px 35px, 0 0, 20px 35px;
   }
-  .kente-bar {
-    position: absolute; top: 0; left: 0; right: 0; height: 5px;
-    background: repeating-linear-gradient(90deg, var(--gold) 0 18px, var(--red) 18px 36px, var(--green-deep) 36px 54px);
+
+  /* Floating orbs */
+  .orb {
+    position: absolute; border-radius: 50%; filter: blur(60px);
+    animation: float 8s ease-in-out infinite;
   }
-  .hero-badge {
-    display: inline-block; background: rgba(230,168,23,0.92); color: var(--green-deep);
-    font-size: 10px; font-weight: 800; letter-spacing: 2.5px; text-transform: uppercase;
-    padding: 4px 16px; border-radius: 2px; margin-bottom: 14px; position: relative;
+  .orb-1 { width: 200px; height: 200px; background: rgba(61,166,122,0.15); top: -60px; right: -40px; }
+  .orb-2 { width: 150px; height: 150px; background: rgba(212,162,76,0.1); bottom: -40px; left: -30px; animation-delay: -4s; }
+  @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+
+  /* Kente strip */
+  .kente {
+    height: 4px; position: absolute; top: 0; left: 0; right: 0;
+    background: repeating-linear-gradient(90deg,
+      var(--gold) 0 16px, var(--green) 16px 32px, #C83C28 32px 48px, var(--gold-light) 48px 64px);
+  }
+
+  .hero-label {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 11px; font-weight: 700; letter-spacing: 3px;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 16px; position: relative;
+  }
+  .hero-label::before, .hero-label::after {
+    content: ''; width: 24px; height: 1px; background: var(--gold); opacity: 0.4;
   }
   .hero h1 {
-    color: #fff; font-family: 'Space Mono', monospace;
-    font-size: clamp(24px, 5vw, 38px); font-weight: 700;
-    line-height: 1.15; position: relative;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 6vw, 52px); font-weight: 900;
+    line-height: 1.1; position: relative;
+    background: linear-gradient(135deg, var(--text) 0%, var(--gold-light) 50%, var(--text) 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    animation: shimmer 6s linear infinite;
   }
-  .hero p { color: rgba(255,255,255,0.6); font-size: 13px; margin-top: 8px; position: relative; }
-  .hero .dot { margin: 0 8px; opacity: 0.4; }
+  @keyframes shimmer { 0% { background-position: 0% center; } 100% { background-position: 200% center; } }
+  .hero-sub {
+    color: var(--text-dim); font-size: 14px; margin-top: 10px;
+    position: relative; font-weight: 500;
+  }
+  .hero-sub span { color: var(--gold); font-weight: 700; }
+  .hero-theme {
+    color: var(--text-dim); font-size: 13px; margin-top: 6px;
+    position: relative; font-style: italic; max-width: 540px;
+    margin-left: auto; margin-right: auto; line-height: 1.45;
+  }
 
-  .tabs-wrap { max-width: 820px; margin: -20px auto 0; padding: 0 16px; position: relative; z-index: 2; }
+  /* ═══ TABS ═══ */
+  .tabs-wrap { max-width: 780px; margin: -24px auto 0; padding: 0 16px; position: relative; z-index: 2; }
   .tabs {
-    display: flex; gap: 4px; background: var(--green-deep);
-    border-radius: 8px; padding: 4px; box-shadow: 0 4px 20px rgba(27,67,50,0.3);
+    display: flex; gap: 6px;
+    background: var(--surface);
+    border: 1px solid var(--card-border);
+    border-radius: 12px; padding: 6px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
   }
-  .tab-btn {
-    flex: 1; padding: 10px 6px; background: transparent; border: none;
-    color: rgba(255,255,255,0.5); cursor: pointer; font-family: 'DM Sans', sans-serif;
-    font-size: 13px; font-weight: 700; border-radius: 5px; transition: all 0.25s;
+  .tab {
+    flex: 1; padding: 14px 8px 10px; background: transparent;
+    border: 1px solid transparent; border-radius: 8px;
+    color: var(--text-dim); cursor: pointer;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 15px; font-weight: 800;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
   }
-  .tab-btn:hover { color: rgba(255,255,255,0.8); }
-  .tab-btn.active { background: var(--gold); color: var(--green-deep); }
-  .tab-date { display: block; font-size: 10px; font-weight: 500; margin-top: 1px; opacity: 0.7; }
+  .tab:hover { color: var(--text); background: rgba(255,255,255,0.03); }
+  .tab.active {
+    background: linear-gradient(135deg, rgba(212,162,76,0.15), rgba(61,166,122,0.1));
+    border-color: rgba(212,162,76,0.3);
+    color: var(--gold-light);
+    box-shadow: 0 0 20px rgba(212,162,76,0.08);
+  }
+  .tab-date {
+    display: block; font-size: 11px; font-weight: 600;
+    margin-top: 2px; opacity: 0.6;
+  }
+  .tab.active .tab-date { opacity: 0.8; color: var(--green-light); }
 
-  .content { max-width: 820px; margin: 0 auto; padding: 0 16px; }
-  .day-section { display: none; padding-top: 24px; }
-  .day-section.active { display: block; }
+  /* ═══ CONTENT ═══ */
+  .content { max-width: 780px; margin: 0 auto; padding: 0 16px 32px; }
+  .day { display: none; padding-top: 28px; }
+  .day.active { display: block; }
 
-  .timeline { position: relative; padding-left: 24px; }
-  .timeline::before {
-    content: ''; position: absolute; left: 6px; top: 8px; bottom: 8px;
-    width: 2px; border-radius: 1px;
-    background: linear-gradient(180deg, var(--green-mid), var(--gold), var(--red)); opacity: 0.2;
-  }
+  /* ═══ EVENT CARDS ═══ */
   .ev {
-    position: relative; margin-bottom: 10px;
-    animation: fadeIn 0.35s ease both;
+    margin-bottom: 8px;
+    animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1) both;
   }
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(8px); }
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(16px); }
     to { opacity: 1; transform: translateY(0); }
   }
-  .ev .dot {
-    position: absolute; left: -21px; top: 14px;
-    width: 12px; height: 12px; border-radius: 50%; border: 2.5px solid var(--bg);
-  }
+
   .card {
-    background: var(--card); border: 1px solid rgba(0,0,0,0.04);
-    border-radius: 7px; padding: 12px 16px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.03); transition: box-shadow 0.2s;
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-left: 4px solid transparent;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: all 0.3s;
   }
-  .card:hover { box-shadow: 0 2px 10px rgba(0,0,0,0.06); }
-  .row { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
-  .left { flex: 1; min-width: 160px; }
-  .tag {
+  .card:hover {
+    background: rgba(255,255,255,0.06);
+    border-right-color: rgba(255,255,255,0.12);
+    border-top-color: rgba(255,255,255,0.12);
+    border-bottom-color: rgba(255,255,255,0.12);
+    transform: translateX(4px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  }
+
+  .accent { display: none; }
+
+  .card-body {
+    flex: 1; padding: 14px 18px; display: flex;
+    align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 8px;
+    min-width: 0;
+  }
+  .card-info { flex: 1; min-width: 160px; }
+
+  .badge {
     display: inline-block; font-size: 9px; font-weight: 800;
-    letter-spacing: 0.6px; text-transform: uppercase;
-    color: #fff; padding: 2px 8px; border-radius: 3px; margin-right: 6px;
+    letter-spacing: 0.8px; text-transform: uppercase;
+    padding: 3px 10px; border-radius: 4px;
+    margin-bottom: 6px;
   }
-  .dur { font-size: 10px; color: #999; font-weight: 500; }
-  .card h3 { font-size: 14px; font-weight: 700; line-height: 1.3; margin-top: 4px; }
-  .card h3 .i { margin-right: 5px; }
-  .card .sub { font-size: 12px; color: #666; margin-top: 3px; line-height: 1.35; }
-  .card .spk { font-size: 12px; font-weight: 600; margin-top: 4px; }
-  .tp {
-    white-space: nowrap; padding: 5px 10px; border-radius: 5px;
-    font-size: 12px; font-weight: 700; font-variant-numeric: tabular-nums; flex-shrink: 0;
+  .card h3 {
+    font-size: 14px; font-weight: 700; line-height: 1.35;
+    color: var(--text);
+  }
+  .card h3 em {
+    font-style: normal; margin-right: 6px;
+  }
+  .card .sub {
+    font-size: 11.5px; color: var(--text-dim); margin-top: 3px;
+    line-height: 1.35;
+  }
+  .card .spk {
+    font-size: 12px; font-weight: 700; margin-top: 5px;
   }
 
-  .t-log .dot{background:#6B8E23;box-shadow:0 0 0 2px rgba(107,142,35,.15)}.t-log .card{border-left:3px solid #6B8E23}.t-log .tag{background:#6B8E23}.t-log .tp{background:rgba(107,142,35,.07);color:#4A6318}
-  .t-mt .dot{background:#2196F3;box-shadow:0 0 0 2px rgba(33,150,243,.15)}.t-mt .card{border-left:3px solid #2196F3}.t-mt .tag{background:#2196F3}.t-mt .tp{background:rgba(33,150,243,.07);color:#1565C0}
-  .t-rc .dot{background:#78909C;box-shadow:0 0 0 2px rgba(120,144,156,.15)}.t-rc .card{border-left:3px solid #78909C}.t-rc .tag{background:#78909C}.t-rc .tp{background:rgba(120,144,156,.07);color:#546E7A}
-  .t-ws .dot{background:#007AA3;box-shadow:0 0 0 2px rgba(0,122,163,.15)}.t-ws .card{border-left:3px solid #007AA3}.t-ws .tag{background:#007AA3}.t-ws .tp{background:rgba(0,122,163,.07);color:#005F80}.t-ws .spk{color:#007AA3}
-  .t-bk .dot{background:#B48C50;box-shadow:0 0 0 2px rgba(180,140,80,.15)}.t-bk .card{border-left:3px solid #B48C50}.t-bk .tag{background:#B48C50}.t-bk .tp{background:rgba(180,140,80,.07);color:#8A6A30}
-  .t-ce .dot{background:#C83C28;box-shadow:0 0 0 2px rgba(200,60,40,.15)}.t-ce .card{border-left:3px solid #C83C28}.t-ce .tag{background:#C83C28}.t-ce .tp{background:rgba(200,60,40,.07);color:#A02A18}
-  .t-ky .dot{background:#9C27B0;box-shadow:0 0 0 2px rgba(156,39,176,.15)}.t-ky .card{border-left:3px solid #9C27B0}.t-ky .tag{background:#9C27B0}.t-ky .tp{background:rgba(156,39,176,.07);color:#7B1FA2}.t-ky .spk{color:#7B1FA2}
-  .t-pn .dot{background:#E66420;box-shadow:0 0 0 2px rgba(230,100,30,.15)}.t-pn .card{border-left:3px solid #E66420}.t-pn .tag{background:#E66420}.t-pn .tp{background:rgba(230,100,30,.07);color:#C04D10}
-  .t-po .dot{background:#5C6BC0;box-shadow:0 0 0 2px rgba(92,107,192,.15)}.t-po .card{border-left:3px solid #5C6BC0}.t-po .tag{background:#5C6BC0}.t-po .tp{background:rgba(92,107,192,.07);color:#3949AB}
-  .t-hk .dot{background:#00897B;box-shadow:0 0 0 2px rgba(0,137,123,.15)}.t-hk .card{border-left:3px solid #00897B}.t-hk .tag{background:#00897B}.t-hk .tp{background:rgba(0,137,123,.07);color:#00695C}
-  .t-sp .dot{background:#555;box-shadow:0 0 0 2px rgba(85,85,85,.15)}.t-sp .card{border-left:3px solid #555}.t-sp .tag{background:#555}.t-sp .tp{background:rgba(85,85,85,.06);color:#333}
-  .t-aw .dot{background:#F9A825;box-shadow:0 0 0 2px rgba(249,168,37,.15)}.t-aw .card{border-left:3px solid #F9A825}.t-aw .tag{background:#D4920E}.t-aw .tp{background:rgba(249,168,37,.07);color:#F57F17}
+  .time {
+    font-size: 12.5px; font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    padding: 6px 12px; border-radius: 6px;
+    white-space: nowrap; flex-shrink: 0;
+    letter-spacing: 0.3px;
+  }
 
-  .wg { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px,1fr)); gap: 8px; margin-top: 10px; }
-  .wi { border-radius: 5px; padding: 10px 12px; border: 1px solid rgba(0,122,163,.1); transition: border-color .2s; }
-  .wi:nth-child(1){background:rgba(0,122,163,.03)}.wi:nth-child(2){background:rgba(0,122,163,.06)}.wi:nth-child(3){background:rgba(0,122,163,.09)}
-  .wi:hover { border-color: rgba(0,122,163,.25); }
-  .wl { display:inline-block;background:#007AA3;color:#fff;font-size:8.5px;font-weight:800;padding:2px 7px;border-radius:2px;letter-spacing:.4px;margin-bottom:5px }
-  .wt { font-size: 12px; font-weight: 600; color: var(--text); line-height: 1.3; }
-  .ws { font-size: 11px; color: #007AA3; font-weight: 600; margin-top: 5px; }
+  /* ═══ TYPE STYLES ═══ */
+  .c-log .card{border-left-color:#6B8E23}.c-log .badge{background:rgba(107,142,35,.15);color:#9AB855}.c-log .time{background:rgba(107,142,35,.08);color:#9AB855}
+  .c-mt .card{border-left-color:#42A5F5}.c-mt .badge{background:rgba(66,165,245,.12);color:#64B5F6}.c-mt .time{background:rgba(66,165,245,.08);color:#64B5F6}
+  .c-rc .card{border-left-color:#78909C}.c-rc .badge{background:rgba(120,144,156,.12);color:#90A4AE}.c-rc .time{background:rgba(120,144,156,.08);color:#90A4AE}
+  .c-ws .card{border-left-color:#00ACC1}.c-ws .badge{background:rgba(0,172,193,.12);color:#4DD0E1}.c-ws .time{background:rgba(0,172,193,.08);color:#4DD0E1}.c-ws .spk{color:#4DD0E1}
+  .c-bk .card{border-left-color:#A1887F}.c-bk .badge{background:rgba(161,136,127,.12);color:#BCAAA4}.c-bk .time{background:rgba(161,136,127,.08);color:#BCAAA4}
+  .c-ce .card{border-left-color:var(--gold)}.c-ce .badge{background:var(--gold-glow);color:var(--gold-light)}.c-ce .time{background:var(--gold-glow);color:var(--gold-light)}
+  .c-ky .card{border-left-color:var(--gold)}.c-ky .badge{background:rgba(212,162,76,.12);color:var(--gold-light)}.c-ky .time{background:rgba(212,162,76,.08);color:var(--gold-light)}.c-ky .spk{color:var(--gold-light)}
+  .c-pn .card{border-left-color:#E66420}.c-pn .badge{background:rgba(230,100,32,.12);color:#FF8A50}.c-pn .time{background:rgba(230,100,32,.08);color:#FF8A50}
+  .c-po .card{border-left-color:#7C4DFF}.c-po .badge{background:rgba(124,77,255,.1);color:#B388FF}.c-po .time{background:rgba(124,77,255,.08);color:#B388FF}
+  .c-hk .card{border-left-color:var(--green)}.c-hk .badge{background:rgba(61,166,122,.12);color:var(--green-light)}.c-hk .time{background:rgba(61,166,122,.08);color:var(--green-light)}
+  .c-sp .card{border-left-color:#78909C}.c-sp .badge{background:rgba(120,144,156,.1);color:#B0BEC5}.c-sp .time{background:rgba(120,144,156,.08);color:#B0BEC5}
+  .c-aw .card{border-left-color:var(--gold)}.c-aw .badge{background:var(--gold-glow);color:var(--gold-light)}.c-aw .time{background:var(--gold-glow);color:var(--gold-light)}
 
-  .chips { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
+  /* ═══ WORKSHOPS ═══ */
+  .ws-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 8px; padding: 10px 18px 14px;
+  }
+  .ws {
+    background: rgba(0,172,193,0.04);
+    border: 1px solid rgba(0,172,193,0.1);
+    border-radius: 8px; padding: 12px 14px;
+    transition: all 0.25s;
+  }
+  .ws:hover {
+    background: rgba(0,172,193,0.08);
+    border-color: rgba(0,172,193,0.2);
+  }
+  .ws-n {
+    display: inline-block; font-size: 9px; font-weight: 800;
+    color: #4DD0E1; letter-spacing: 0.5px;
+    padding: 2px 8px; border-radius: 3px;
+    background: rgba(0,172,193,0.12); margin-bottom: 6px;
+  }
+  .ws-t { font-size: 12.5px; font-weight: 600; line-height: 1.35; color: var(--text); }
+  .ws-s { font-size: 11px; font-weight: 600; color: #4DD0E1; margin-top: 6px; opacity: 0.8; }
+
+  /* ═══ CHIPS ═══ */
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; padding: 0 18px 14px; }
   .chip {
-    font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 16px;
-    background: rgba(230,100,30,.08); border: 1px solid rgba(230,100,30,.14); color: #C04D10;
+    font-size: 11px; font-weight: 600;
+    padding: 5px 12px; border-radius: 20px;
+    background: rgba(230,100,32,0.08);
+    border: 1px solid rgba(230,100,32,0.15);
+    color: #FF8A50; transition: all 0.2s;
   }
+  .chip:hover { background: rgba(230,100,32,0.14); }
 
-  .footer { text-align: center; padding: 24px 0 32px; border-top: 1px solid #e5e5dd; margin-top: 16px; }
-  .kente-mini {
-    display: inline-block; width: 56px; height: 3px; border-radius: 2px; margin-bottom: 12px;
-    background: repeating-linear-gradient(90deg, var(--gold) 0 7px, var(--red) 7px 14px, var(--green-deep) 14px 21px);
+  /* ═══ FOOTER ═══ */
+  .footer {
+    text-align: center; padding: 28px 0 36px;
+    border-top: 1px solid var(--card-border);
+    margin-top: 12px;
   }
-  .footer p { font-size: 11px; color: #aaa; }
+  .kente-sm {
+    display: inline-block; width: 48px; height: 3px; border-radius: 2px;
+    background: repeating-linear-gradient(90deg,
+      var(--gold) 0 6px, var(--green) 6px 12px, #C83C28 12px 18px);
+    margin-bottom: 12px;
+  }
+  .footer p { font-size: 11px; color: var(--text-muted); letter-spacing: 1px; }
 
-  @media(max-width:500px){.card{padding:10px 12px}.row{flex-direction:column-reverse;align-items:flex-start;gap:4px}.wg{grid-template-columns:1fr}.tab-btn{font-size:12px;padding:9px 4px}}
+  @media(max-width:520px) {
+    .card-body { flex-direction: column-reverse; align-items: flex-start; gap: 6px; padding: 12px 14px; }
+    .ws-grid { grid-template-columns: 1fr; padding: 8px 14px 12px; }
+    .chips { padding: 0 14px 12px; }
+    .tab { font-size: 13px; padding: 12px 6px 8px; }
+  }
 </style>
 </head>
 <body>
 
+<!-- HERO -->
 <div class="hero">
-  <div class="kente-bar"></div>
-  <div class="hero-badge">Programme Officiel</div>
-  <h1>IndabaX Cameroon 2026</h1>
-  <p>Deep Learning Indaba<span class="dot">·</span>12 – 14 Mai 2026</p>
+  <div class="kente"></div>
+  <div class="hero-pattern"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="hero-label">IndabaX Cameroon 2026</div>
+  <h1 style="font-size:clamp(18px,3.5vw,30px);line-height:1.25;margin-bottom:8px">Frugal Innovation: AI & Local Ingenuity for Resilient Food Systems</h1>
+  <p class="hero-theme">Innover sobrement : l'intelligence artificielle et l'ingéniosité locale au service de la résilience alimentaire et communautaire</p>
+  <p class="hero-sub"><span>12 – 14 Mai 2026</span> · Deep Learning Indaba</p>
 </div>
 
+<!-- TABS -->
 <div class="tabs-wrap"><div class="tabs">
-  <button class="tab-btn active" onclick="sw(1)">Jour 1<span class="tab-date">Mar. 12 Mai</span></button>
-  <button class="tab-btn" onclick="sw(2)">Jour 2<span class="tab-date">Mer. 13 Mai</span></button>
-  <button class="tab-btn" onclick="sw(3)">Jour 3<span class="tab-date">Jeu. 14 Mai</span></button>
+  <button class="tab active" onclick="sw(1)">Mardi<span class="tab-date">12 Mai</span></button>
+  <button class="tab" onclick="sw(2)">Mercredi<span class="tab-date">13 Mai</span></button>
+  <button class="tab" onclick="sw(3)">Jeudi<span class="tab-date">14 Mai</span></button>
 </div></div>
 
 <div class="content">
 
-<!-- JOUR 1 -->
-<div class="day-section active" id="d1"><div class="timeline">
+<!-- ══════ MARDI 12 MAI ══════ -->
+<div class="day active" id="d1">
 
-  <div class="ev t-log"><div class="dot"></div><div class="card"><div class="row"><div class="left"><span class="tag">Registration</span><h3><span class="i">📋</span>Arrival + Registration Desk</h3><p class="sub">Hackathon Teams and Poster registration</p></div><div class="tp">07:00 – 09:00</div></div></div></div>
+  <div class="ev"><div class="card c-log"><div class="accent"></div><div class="card-body"><div class="card-info"><span class="badge">Registration</span><h3><em>📋</em>Arrival + Registration Desk</h3><p class="sub">Hackathon Teams & Poster registration</p></div><div class="time">07:00 – 09:00</div></div></div></div>
 
-  <div class="ev t-ws"><div class="dot"></div><div class="card"><div class="row"><div class="left"><span class="tag">Workshops</span><h3><span class="i">🧪</span>Tutorials & Workshops</h3></div><div class="tp">09:00 – 11:30</div></div>
-  <div class="wg">
-    <div class="wi"><span class="wl">WORKSHOP 1</span><p class="wt">Découverte de l'IA sans code</p><p class="ws">👤 Cabrel Domfang</p></div>
-    <div class="wi"><span class="wl">WORKSHOP 2</span><p class="wt">Explainability AI (XAI) & Pré-traitement, Exploration et Modélisation</p><p class="ws">👤 Archange Koumba</p></div>
-    <div class="wi"><span class="wl">WORKSHOP 3</span><p class="wt">Créer un réseau de neurones de zéro — Maladies du manioc / précipitations</p><p class="ws">👤 Pondi Julie Grâce Irène</p></div>
+  <div class="ev"><div class="card c-ws"><div class="accent"></div><div class="card-body"><div class="card-info"><span class="badge">Workshops</span><h3><em>🧪</em>Tutorials & Workshops</h3></div><div class="time">09:00 – 11:30</div></div>
+  <div class="ws-grid">
+    <div class="ws"><span class="ws-n">WORKSHOP 1</span><p class="ws-t">Découverte de l'IA sans code</p><p class="ws-s">👤 Cabrel Domfang</p></div>
+    <div class="ws"><span class="ws-n">WORKSHOP 2</span><p class="ws-t">Explainability AI (XAI) & Pré-traitement, Exploration et Modélisation</p><p class="ws-s">👤 Archange Koumba</p></div>
+    <div class="ws"><span class="ws-n">WORKSHOP 3</span><p class="ws-t">Créer un réseau de neurones de zéro — Maladies du manioc / précipitations</p><p class="ws-s">👤 Pondi Julie Grâce Irène</p></div>
   </div></div></div>
 
-  <div class="ev t-bk"><div class="dot"></div><div class="card"><div class="row"><div class="left"><span class="tag">Pause</span><span class="dur">30 min</span><h3><span class="i">☕</span>Coffee Break & Networking</h3></div><div class="tp">11:30 – 12:00</div></div></div></div>
+  <div class="ev"><div class="card c-bk"><div class="accent"></div><div class="card-body"><div class="card-info"><span class="badge">Pause</span><h3><em>☕</em>Coffee Break & Networking</h3></div><div class="time">11:30 – 12:00</div></div></div></div>
 
-  <div class="ev t-ce"><div class="dot"></div><div class="card"><div class="row"><div class="left"><span class="tag">Cérémonie</span><h3><span class="i">🎉</span>Opening Ceremony</h3><p class="sub">Group Picture, Interviews & Networking</p></div><div class="tp">12:00 – 13:00</div></div></div></div>
+  <div class="ev"><div class="card c-ce"><div class="accent"></div><div class="card-body"><div class="card-info"><span class="badge">Cérémonie</span><h3><em>🎉</em>Opening Ceremony</h3><p class="sub">Group Picture, Interviews & Networking</p></div><div class="time">12:00 – 13:00</div></div></div></div>
 
-  <div class="ev t-ky"><div class="dot"></div><div class="card"><div class="row"><div class="left"><span class="tag">Keynote</span><h3><span class="i">🎤</span>IA pour l'Agriculture, l'Élevage et la Sécurité Alimentaire</h3><p class="spk">🎓 Prof. Fendji Jean Louis</p></div><div class="tp">13:00 – 13:45</div></div></div></div>
+  <div class="ev"><div class="card c-ky"><div class="accent"></div><div class="card-body"><div class="card-info"><span class="badge">Keynote</span><h3><em>🎤</em>IA pour l'Agriculture, l'Élevage et la Sécurité Alimentaire</h3><p class="spk">🎓 Prof. Fendji Jean Louis</p></div><div class="time">13:00 – 13:45</div></div></div></div>
 
-  <div class="ev t-bk"><div class="dot"></div><div class="card"><div class="row"><div class="left"><span class="tag">Pause</span><span class="dur">1 h</span><h3><span class="i">🍽️</span>Lunch</h3></div><div class="tp">13:50 – 14:45</div></div></div></div>
+  <div class="ev"><div class="card c-bk"><div class="accent"></div><div class="card-body"><div class="card-info"><span class="badge">Pause</span><h3><em>🍽️</em>Lunch</h3></div><div class="time">13:50 – 14:45</div></div></div></div>
 
-  <div class="ev t-pn"><div class="dot"></div><div class="card"><div class="row"><div class="left"><span class="tag">Panel</span><h3><span class="i">💬</span>IA, ingéniosité locale et terrain : que veulent vraiment les communautés ?</h3></div><div class="tp">14:50 – 15:50</div></div>
+  <div class="ev"><div class="card c-pn"><div class="accent"></div><div class="card-body"><div class="card-info"><span class="badge">Panel</span><h3><em>💬</em>IA, ingéniosité locale et terrain : que veulent vraiment les communautés ?</h3></div><div class="time">14:50 – 15:50</div></div>
   <div class="chips"><span class="chip">Prof. Arouna</span><span class="chip">Steve Carly Desobgo Zangue</span><span class="chip">Roger Djoulde Darman</span><span class="chip">Mureille Laure Obaya</span><span class="chip">Henriette Zangué Adjia</span></div></div></div>
 
-  <div class="ev t-sp"><div class="dot"></div><div class="card"><div class="row"><div class="left"><span class="tag">Sponsors</span><h3><span class="i">🤝</span>Sponsor Sessions</h3></div><div class="tp">15:50 – 16:50</div></div></div></div>
+  <div class="ev"><div class="card c-sp"><div class="accent"></div><div class="card-body"><div class="card-info"><span class="badge">Sponsors</span><h3><em>🤝</em>Sponsor Sessions</h3></div><div class="time">15:50 – 16:50</div></div></div></div>
 
-</div></div>
+</div>
 
-<!-- JOUR 2 -->
-<div class="day-section" id="d2"><div class="timeline">
+<!-- ══════ MERCREDI 13 MAI ══════ -->
+<div class="day" id="d2">
 
-  <div class="ev t-log"><div class="dot"></div><div class="card"><div class="row"><div class="left"><span class="tag">Registration</span><h3><span class="i">📋</span>Arrival + Registration Desk</h3></div><div class="tp">07:00 – 08:00</div></div></div></div>
+  <div class="ev"><div class="card c-log"><div class="accent"></div><div class="card-body"><div class="card-info"><span class="badge">Registration</span><h3><em>📋</em>Arrival + Registration Desk</h3></div><div class="time">07:00 – 08:00</div></div></div></div>
 
-  <div class="ev t-mt"><div class="dot"></div><div class="card"><div class="row"><div class="left"><span class="tag">Mentorship</span><h3><span class="i">🧭</span>Mentorship Session</h3></div><div class="tp">08:00 – 08:30</div></div></div></div>
+  <div class="ev"><div class="card c-mt"><div class="accent"></div><div class="card-body"><div class="card-info"><span class="badge">Mentorship</span><h3><em>🧭</em>Mentorship Session</h3></div><div class="time">08:00 – 08:30</div></div></div></div>
 
-  <div class="ev t-rc"><div class="dot"></div><div class="card"><div class="row"><div class="left"><span class="tag">Recap</span><h3><span class="i">📢</span>Recap Day 1 & Announcements</h3></div><div class="tp">08:30 – 09:00</div></div></div></div>
+  <div class="ev"><div class="card c-rc"><div class="accent"></div><div class="card-body"><div class="card-info"><span class="badge">Recap</span><h3><em>📢</em>Recap Day 1 & Announcements</h3></div><div class="time">08:30 – 09:00</div></div></div></div>
 
-  <div class="ev t-ky"><div class="dot"></div><div class="card"><div class="row"><div class="left"><span class="tag">Keynote</span><h3><span class="i">🎤</span>IA Frugale et Ingéniosité Locale</h3><p class="spk">🎓 Ado Adamou Abba Ari</p></div><div class="tp">09:00 – 09:45</div></div></div></div>
+  <div class="ev"><div class="card c-ky"><div class="accent"></div><div class="card-body"><div class="card-info"><span class="badge">Keynote</span><h3><em>🎤</em>IA Frugale et Ingéniosité Locale</h3><p class="spk">🎓 Ado Adamou Abba Ari</p></div><div class="time">09:00 – 09:45</div></div></div></div>
 
-  <div class="ev t-bk"><div class="dot"></div><div class="card"><div class="row"><div class="left"><span class="tag">Pause</span><span class="dur">30 min</span><h3><span class="i">☕</span>Coffee Break & Networking</h3></div><div class="tp">09:50 – 10:20</div></div></div></div>
+  <div class="ev"><div class="card c-bk"><div class="accent"></div><div class="card-body"><div class="card-info"><span class="badge">Pause</span><h3><em>☕</em>Coffee Break & Networking</h3></div><div class="time">09:50 – 10:20</div></div></div></div>
 
-  <div class="ev t-pn"><div class="dot"></div><div class="card"><div class="row"><div class="left"><span class="tag">Panel</span><h3><span class="i">💬</span>IA, Langues Locales et Patrimoine Culturel</h3></div><div class="tp">10:30 – 11:30</div></div>
+  <div class="ev"><div class="card c-pn"><div class="accent"></div><div class="card-body"><div class="card-info"><span class="badge">Panel</span><h3><em>💬</em>IA, Langues Locales et Patrimoine Culturel</h3></div><div class="time">10:30 – 11:30</div></div>
   <div class="chips"><span class="chip">Elisabeth Yaoudam</span><span class="chip">TataPong Beyala</span><span class="chip">Alain Djeumo</span></div></div></div>
 
-  <div class="ev t-po"><div class="dot"></div><div class="card"><div class="row"><div class="left"><span class="tag">Posters</span><h3><span class="i">📊</span>Poster Oral Presentation</h3></div><div class="tp">11:40 – 12:10</div></div></div></div>
+  <div class="ev"><div class="card c-po"><div class="accent"></div><div class="card-body"><div class="card-info"><span class="badge">Posters</span><h3><em>📊</em>Poster Oral Presentation</h3></div><div class="time">11:40 – 12:10</div></div></div></div>
 
-  <div class="ev t-po"><div class="dot"></div><div class="card"><div class="row"><div class="left"><span class="tag">Posters</span><h3><span class="i">🖼️</span>Poster Presentation</h3></div><div class="tp">12:20 – 14:20</div></div></div></div>
+  <div class="ev"><div class="card c-po"><div class="accent"></div><div class="card-body"><div class="card-info"><span class="badge">Posters</span><h3><em>🖼️</em>Poster Presentation</h3></div><div class="time">12:20 – 14:20</div></div></div></div>
 
-  <div class="ev t-bk"><div class="dot"></div><div class="card"><div class="row"><div class="left"><span class="tag">Pause</span><span class="dur">1 h</span><h3><span class="i">🍽️</span>Lunch</h3></div><div class="tp">14:20 – 15:00</div></div></div></div>
+  <div class="ev"><div class="card c-bk"><div class="accent"></div><div class="card-body"><div class="card-info"><span class="badge">Pause</span><h3><em>🍽️</em>Lunch</h3></div><div class="time">14:20 – 15:00</div></div></div></div>
 
-  <div class="ev t-hk"><div class="dot"></div><div class="card"><div class="row"><div class="left"><span class="tag">Hackathon</span><span class="dur">2 h</span><h3><span class="i">🚀</span>Pitch Hackathon Presentation</h3></div><div class="tp">15:00 – 17:00</div></div></div></div>
+  <div class="ev"><div class="card c-hk"><div class="accent"></div><div class="card-body"><div class="card-info"><span class="badge">Hackathon</span><h3><em>🚀</em>Pitch Hackathon Presentation</h3></div><div class="time">15:00 – 17:00</div></div></div></div>
 
-</div></div>
+</div>
 
-<!-- JOUR 3 -->
-<div class="day-section" id="d3"><div class="timeline">
+<!-- ══════ JEUDI 14 MAI ══════ -->
+<div class="day" id="d3">
 
-  <div class="ev t-log"><div class="dot"></div><div class="card"><div class="row"><div class="left"><span class="tag">Registration</span><h3><span class="i">📋</span>Arrival + Registration Desk</h3></div><div class="tp">08:00 – 08:30</div></div></div></div>
+  <div class="ev"><div class="card c-log"><div class="accent"></div><div class="card-body"><div class="card-info"><span class="badge">Registration</span><h3><em>📋</em>Arrival + Registration Desk</h3></div><div class="time">08:00 – 08:30</div></div></div></div>
 
-  <div class="ev t-rc"><div class="dot"></div><div class="card"><div class="row"><div class="left"><span class="tag">Recap</span><h3><span class="i">📢</span>Recap Day 2 & Announcements</h3></div><div class="tp">08:30 – 09:00</div></div></div></div>
+  <div class="ev"><div class="card c-rc"><div class="accent"></div><div class="card-body"><div class="card-info"><span class="badge">Recap</span><h3><em>📢</em>Recap Day 2 & Announcements</h3></div><div class="time">08:30 – 09:00</div></div></div></div>
 
-  <div class="ev t-bk"><div class="dot"></div><div class="card"><div class="row"><div class="left"><span class="tag">Pause</span><span class="dur">30 min</span><h3><span class="i">☕</span>Coffee Break & Networking</h3></div><div class="tp">09:00 – 09:30</div></div></div></div>
+  <div class="ev"><div class="card c-bk"><div class="accent"></div><div class="card-body"><div class="card-info"><span class="badge">Pause</span><h3><em>☕</em>Coffee Break & Networking</h3></div><div class="time">09:00 – 09:30</div></div></div></div>
 
-  <div class="ev t-ws"><div class="dot"></div><div class="card"><div class="row"><div class="left"><span class="tag">Workshops</span><h3><span class="i">🧪</span>Tutorials & Workshops</h3></div><div class="tp">09:30 – 11:30</div></div>
-  <div class="wg">
-    <div class="wi"><span class="wl">WORKSHOP 4</span><p class="wt">Intégrer l'IA dans son application ou projet communautaire</p></div>
-    <div class="wi"><span class="wl">WORKSHOP 5</span><p class="wt">Projet Pratique — Détection des maladies du manioc</p></div>
-    <div class="wi"><span class="wl">WORKSHOP 6</span><p class="wt">Federated & Transfer Learning — Vision par Ordinateur Mobiles/Edge</p></div>
+  <div class="ev"><div class="card c-ws"><div class="accent"></div><div class="card-body"><div class="card-info"><span class="badge">Workshops</span><h3><em>🧪</em>Tutorials & Workshops</h3></div><div class="time">09:30 – 11:30</div></div>
+  <div class="ws-grid">
+    <div class="ws"><span class="ws-n">WORKSHOP 4</span><p class="ws-t">Intégrer l'IA dans son application ou projet communautaire</p></div>
+    <div class="ws"><span class="ws-n">WORKSHOP 5</span><p class="ws-t">Projet Pratique — Détection des maladies du manioc</p></div>
+    <div class="ws"><span class="ws-n">WORKSHOP 6</span><p class="ws-t">Federated & Transfer Learning — Vision par Ordinateur Mobiles/Edge</p></div>
   </div></div></div>
 
-  <div class="ev t-sp"><div class="dot"></div><div class="card"><div class="row"><div class="left"><span class="tag">Sponsors</span><h3><span class="i">🤝</span>Sponsor Sessions — Communautés Locales</h3></div><div class="tp">11:30 – 12:30</div></div></div></div>
+  <div class="ev"><div class="card c-sp"><div class="accent"></div><div class="card-body"><div class="card-info"><span class="badge">Sponsors</span><h3><em>🤝</em>Sponsor Sessions — Communautés Locales</h3></div><div class="time">11:30 – 12:30</div></div></div></div>
 
-  <div class="ev t-aw"><div class="dot"></div><div class="card"><div class="row"><div class="left"><span class="tag">Awards</span><h3><span class="i">🏆</span>Awards & Closing Ceremony</h3></div><div class="tp">12:30 – 14:30</div></div></div></div>
+  <div class="ev"><div class="card c-aw"><div class="accent"></div><div class="card-body"><div class="card-info"><span class="badge">Awards</span><h3><em>🏆</em>Awards & Closing Ceremony</h3></div><div class="time">12:30 – 14:30</div></div></div></div>
 
-  <div class="ev t-ce"><div class="dot"></div><div class="card"><div class="row"><div class="left"><span class="tag">Clôture</span><h3><span class="i">🎬</span>Final Interviews & Dinner</h3><p class="sub">On your own</p></div><div class="tp">Après 14:30</div></div></div></div>
+  <div class="ev"><div class="card c-ce"><div class="accent"></div><div class="card-body"><div class="card-info"><span class="badge">Clôture</span><h3><em>🎬</em>Final Interviews & Dinner</h3><p class="sub">On your own</p></div><div class="time">Après 14:30</div></div></div></div>
 
-</div></div>
+</div>
 
-<div class="footer"><div class="kente-mini"></div><p>IndabaX Cameroon 2026 — Strengthening African AI</p></div>
+<div class="footer"><div class="kente-sm"></div><p>INDABAX CAMEROON 2026 — STRENGTHENING AFRICAN AI</p></div>
 </div>
 
 <script>
-function sw(n){
-  document.querySelectorAll('.day-section').forEach(s=>s.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
-  document.getElementById('d'+n).classList.add('active');
-  document.querySelectorAll('.tab-btn')[n-1].classList.add('active');
-  document.querySelectorAll('#d'+n+' .ev').forEach((e,i)=>{
-    e.style.animation='none';e.offsetHeight;
-    e.style.animation='fadeIn .35s ease '+(i*.04)+'s both';
+function sw(n) {
+  document.querySelectorAll('.day').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
+  document.getElementById('d' + n).classList.add('active');
+  document.querySelectorAll('.tab')[n - 1].classList.add('active');
+  document.querySelectorAll('#d' + n + ' .ev').forEach((e, i) => {
+    e.style.animation = 'none'; e.offsetHeight;
+    e.style.animation = 'slideUp 0.4s cubic-bezier(0.4,0,0.2,1) ' + (i * 0.05) + 's both';
   });
 }
 </script>
