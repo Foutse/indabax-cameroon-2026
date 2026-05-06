@@ -37,7 +37,6 @@
                 var(--bg);
   }
 
-  /* Animated geometric pattern */
   .hero-pattern {
     position: absolute; inset: 0; opacity: 0.04;
     background-image:
@@ -51,7 +50,6 @@
     background-position: 0 0, 0 0, 20px 35px, 20px 35px, 0 0, 20px 35px;
   }
 
-  /* Floating orbs */
   .orb {
     position: absolute; border-radius: 50%; filter: blur(60px);
     animation: float 8s ease-in-out infinite;
@@ -60,7 +58,6 @@
   .orb-2 { width: 150px; height: 150px; background: rgba(212,162,76,0.1); bottom: -40px; left: -30px; animation-delay: -4s; }
   @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
 
-  /* Kente strip */
   .kente {
     height: 4px; position: absolute; top: 0; left: 0; right: 0;
     background: repeating-linear-gradient(90deg,
@@ -213,6 +210,7 @@
   .c-hk .card{border-left-color:var(--green)}.c-hk .badge{background:rgba(61,166,122,.12);color:var(--green-light)}.c-hk .time{background:rgba(61,166,122,.08);color:var(--green-light)}
   .c-sp .card{border-left-color:#78909C}.c-sp .badge{background:rgba(120,144,156,.1);color:#B0BEC5}.c-sp .time{background:rgba(120,144,156,.08);color:#B0BEC5}
   .c-aw .card{border-left-color:var(--gold)}.c-aw .badge{background:var(--gold-glow);color:var(--gold-light)}.c-aw .time{background:var(--gold-glow);color:var(--gold-light)}
+  .c-cm .card{border-left-color:#26A69A}.c-cm .badge{background:rgba(38,166,154,.12);color:#4DB6AC}.c-cm .time{background:rgba(38,166,154,.08);color:#4DB6AC}
 
   /* ═══ WORKSHOPS ═══ */
   .ws-grid {
@@ -240,14 +238,27 @@
 
   /* ═══ CHIPS ═══ */
   .chips { display: flex; flex-wrap: wrap; gap: 6px; padding: 0 18px 14px; }
+  .chips-label {
+    width: 100%; font-size: 9px; font-weight: 700; letter-spacing: 0.8px;
+    text-transform: uppercase; color: var(--text-muted); margin-bottom: 2px;
+  }
   .chip {
     font-size: 11px; font-weight: 600;
     padding: 5px 12px; border-radius: 20px;
+    transition: all 0.2s;
+  }
+  .chip-panel {
     background: rgba(230,100,32,0.08);
     border: 1px solid rgba(230,100,32,0.15);
-    color: #FF8A50; transition: all 0.2s;
+    color: #FF8A50;
   }
-  .chip:hover { background: rgba(230,100,32,0.14); }
+  .chip-panel:hover { background: rgba(230,100,32,0.14); }
+  .chip-team {
+    background: rgba(61,166,122,0.08);
+    border: 1px solid rgba(61,166,122,0.15);
+    color: var(--green-light);
+  }
+  .chip-team:hover { background: rgba(61,166,122,0.14); }
 
   /* ═══ FOOTER ═══ */
   .footer {
@@ -297,77 +308,97 @@
 <!-- ══════ MARDI 12 MAI ══════ -->
 <div class="day active" id="d1">
 
-  <div class="ev"><div class="card c-log"><div class="accent"></div><div class="card-body"><div class="card-info"><span class="badge">Registration</span><h3><em>📋</em>Arrival + Registration Desk</h3><p class="sub">Hackathon Teams & Poster registration</p></div><div class="time">07:00 – 09:00</div></div></div></div>
+  <div class="ev"><div class="card c-log"><div class="card-body"><div class="card-info"><span class="badge">Registration</span><h3><em>📋</em>Arrival + Registration Desk</h3><p class="sub">Hackathon Teams & Poster registration</p></div><div class="time">07:00 – 08:30</div></div></div></div>
 
-  <div class="ev"><div class="card c-ws"><div class="accent"></div><div class="card-body"><div class="card-info"><span class="badge">Workshops</span><h3><em>🧪</em>Tutorials & Workshops</h3></div><div class="time">09:00 – 11:30</div></div>
+  <div class="ev"><div class="card c-ws"><div class="card-body"><div class="card-info"><span class="badge">Workshops</span><h3><em>🧪</em>Parallel Sessions — Tutorials & Workshops</h3></div><div class="time">08:30 – 12:00</div></div>
   <div class="ws-grid">
-    <div class="ws"><span class="ws-n">WORKSHOP 1</span><p class="ws-t">Découverte de l'IA sans code</p><p class="ws-s">👤 Cabrel Domfang</p></div>
-    <div class="ws"><span class="ws-n">WORKSHOP 2</span><p class="ws-t">Explainability AI (XAI) & Pré-traitement, Exploration et Modélisation</p><p class="ws-s">👤 Archange Koumba</p></div>
-    <div class="ws"><span class="ws-n">WORKSHOP 3</span><p class="ws-t">Créer un réseau de neurones de zéro — Maladies du manioc / précipitations</p><p class="ws-s">👤 Pondi Julie Grâce Irène</p></div>
+    <div class="ws"><span class="ws-n">ROOM 1</span><p class="ws-t">Creating an AI monitoring and decision support assistant for food security and smallholder farmers</p><p class="ws-s">👤 Cabrel Domfang</p></div>
+    <div class="ws"><span class="ws-n">ROOM 2</span><p class="ws-t">Explainable AI — ML for Disease Detection (Cassava)</p><p class="ws-s">👤 Archange Koumba</p></div>
+    <div class="ws"><span class="ws-n">ROOM 3</span><p class="ws-t">Hands-On Agricultural Diagnostics: Cassava Disease Detection with Computer Vision</p><p class="ws-s">👤 Pondi Julie Grâce Irène</p></div>
   </div></div></div>
 
-  <div class="ev"><div class="card c-bk"><div class="accent"></div><div class="card-body"><div class="card-info"><span class="badge">Pause</span><h3><em>☕</em>Coffee Break & Networking</h3></div><div class="time">11:30 – 12:00</div></div></div></div>
+  <div class="ev"><div class="card c-ce"><div class="card-body"><div class="card-info"><span class="badge">Cérémonie</span><h3><em>🎉</em>Opening Ceremony</h3><p class="sub">Welcome Speech and Opening Remarks</p></div><div class="time">12:00 – 12:45</div></div></div></div>
 
-  <div class="ev"><div class="card c-ce"><div class="accent"></div><div class="card-body"><div class="card-info"><span class="badge">Cérémonie</span><h3><em>🎉</em>Opening Ceremony</h3><p class="sub">Group Picture, Interviews & Networking</p></div><div class="time">12:00 – 13:00</div></div></div></div>
+  <div class="ev"><div class="card c-bk"><div class="card-body"><div class="card-info"><span class="badge">Pause</span><h3><em>☕</em>Coffee Break & Networking</h3></div><div class="time">12:45 – 13:30</div></div></div></div>
 
-  <div class="ev"><div class="card c-ky"><div class="accent"></div><div class="card-body"><div class="card-info"><span class="badge">Keynote</span><h3><em>🎤</em>IA pour l'Agriculture, l'Élevage et la Sécurité Alimentaire</h3><p class="spk">🎓 Prof. Fendji Jean Louis</p></div><div class="time">13:00 – 13:45</div></div></div></div>
+  <div class="ev"><div class="card c-ky"><div class="card-body"><div class="card-info"><span class="badge">Keynote 1</span><h3><em>🎤</em>AI for Agriculture, Livestock and Food Security</h3><p class="spk">🎓 Prof. Dongock Nguemo Delphine</p></div><div class="time">13:30 – 14:15</div></div></div></div>
 
-  <div class="ev"><div class="card c-bk"><div class="accent"></div><div class="card-body"><div class="card-info"><span class="badge">Pause</span><h3><em>🍽️</em>Lunch</h3></div><div class="time">13:50 – 14:45</div></div></div></div>
+  <div class="ev"><div class="card c-pn"><div class="card-body"><div class="card-info"><span class="badge">Panel 1</span><h3><em>💬</em>AI, Local Innovation and the Local Context: What Do Communities Really Want?</h3></div><div class="time">14:15 – 15:15</div></div>
+  <div class="chips">
+    <span class="chips-label">Panélistes</span>
+    <span class="chip chip-panel">Prof. Arouna Ndam Njoya (Modérateur)</span>
+    <span class="chip chip-panel">Prof. Steve Carly Desobgo Zangue</span>
+    <span class="chip chip-panel">Prof. Roger Djoulde Darman</span>
+    <span class="chip chip-panel">Ing. Mureille Laure Obaya</span>
+  </div></div></div>
 
-  <div class="ev"><div class="card c-pn"><div class="accent"></div><div class="card-body"><div class="card-info"><span class="badge">Panel</span><h3><em>💬</em>IA, ingéniosité locale et terrain : que veulent vraiment les communautés ?</h3></div><div class="time">14:50 – 15:50</div></div>
-  <div class="chips"><span class="chip">Prof. Arouna</span><span class="chip">Steve Carly Desobgo Zangue</span><span class="chip">Roger Djoulde Darman</span><span class="chip">Mureille Laure Obaya</span><span class="chip">Henriette Zangué Adjia</span></div></div></div>
+  <div class="ev"><div class="card c-bk"><div class="card-body"><div class="card-info"><span class="badge">Pause</span><h3><em>🍽️</em>Lunch</h3></div><div class="time">15:15 – 16:00</div></div></div></div>
 
-  <div class="ev"><div class="card c-sp"><div class="accent"></div><div class="card-body"><div class="card-info"><span class="badge">Sponsors</span><h3><em>🤝</em>Sponsor Sessions</h3></div><div class="time">15:50 – 16:50</div></div></div></div>
+  <div class="ev"><div class="card c-ky"><div class="card-body"><div class="card-info"><span class="badge">Keynote 2</span><h3><em>🎤</em>AI for Food Safety</h3><p class="spk">🎓 Prof. Roger Djouldé Darman</p></div><div class="time">16:00 – 16:30</div></div></div></div>
+
+  <div class="ev"><div class="card c-sp"><div class="card-body"><div class="card-info"><span class="badge">Sponsors</span><h3><em>🤝</em>Sponsor Sessions — DIGITAfrica</h3></div><div class="time">16:30 – 17:30</div></div></div></div>
 
 </div>
 
 <!-- ══════ MERCREDI 13 MAI ══════ -->
 <div class="day" id="d2">
 
-  <div class="ev"><div class="card c-log"><div class="accent"></div><div class="card-body"><div class="card-info"><span class="badge">Registration</span><h3><em>📋</em>Arrival + Registration Desk</h3></div><div class="time">07:00 – 08:00</div></div></div></div>
+  <div class="ev"><div class="card c-log"><div class="card-body"><div class="card-info"><span class="badge">Registration</span><h3><em>📋</em>Arrival + Registration Desk</h3></div><div class="time">07:00 – 08:00</div></div></div></div>
 
-  <div class="ev"><div class="card c-mt"><div class="accent"></div><div class="card-body"><div class="card-info"><span class="badge">Mentorship</span><h3><em>🧭</em>Mentorship Session</h3></div><div class="time">08:00 – 08:30</div></div></div></div>
+  <div class="ev"><div class="card c-mt"><div class="card-body"><div class="card-info"><span class="badge">Mentorship</span><h3><em>🧭</em>Mentorship Session</h3></div><div class="time">08:00 – 08:30</div></div></div></div>
 
-  <div class="ev"><div class="card c-rc"><div class="accent"></div><div class="card-body"><div class="card-info"><span class="badge">Recap</span><h3><em>📢</em>Recap Day 1 & Announcements</h3></div><div class="time">08:30 – 09:00</div></div></div></div>
+  <div class="ev"><div class="card c-rc"><div class="card-body"><div class="card-info"><span class="badge">Recap</span><h3><em>📢</em>Day 1 Recap & Announcements</h3></div><div class="time">08:30 – 09:00</div></div></div></div>
 
-  <div class="ev"><div class="card c-ky"><div class="accent"></div><div class="card-body"><div class="card-info"><span class="badge">Keynote</span><h3><em>🎤</em>IA Frugale et Ingéniosité Locale</h3><p class="spk">🎓 Ado Adamou Abba Ari</p></div><div class="time">09:00 – 09:45</div></div></div></div>
+  <div class="ev"><div class="card c-ky"><div class="card-body"><div class="card-info"><span class="badge">Keynote 3</span><h3><em>🎤</em>Frugal AI and Local Creativity</h3><p class="spk">🎓 Prof. Ado Adamou Abba Ari</p></div><div class="time">09:00 – 09:45</div></div></div></div>
 
-  <div class="ev"><div class="card c-bk"><div class="accent"></div><div class="card-body"><div class="card-info"><span class="badge">Pause</span><h3><em>☕</em>Coffee Break & Networking</h3></div><div class="time">09:50 – 10:20</div></div></div></div>
+  <div class="ev"><div class="card c-bk"><div class="card-body"><div class="card-info"><span class="badge">Pause</span><h3><em>☕</em>Coffee Break & Networking</h3></div><div class="time">09:45 – 10:15</div></div></div></div>
 
-  <div class="ev"><div class="card c-pn"><div class="accent"></div><div class="card-body"><div class="card-info"><span class="badge">Panel</span><h3><em>💬</em>IA, Langues Locales et Patrimoine Culturel</h3></div><div class="time">10:30 – 11:30</div></div>
-  <div class="chips"><span class="chip">Elisabeth Yaoudam</span><span class="chip">TataPong Beyala</span><span class="chip">Alain Djeumo</span></div></div></div>
+  <div class="ev"><div class="card c-pn"><div class="card-body"><div class="card-info"><span class="badge">Panel 2</span><h3><em>💬</em>IA, Langues Locales et Patrimoine Culturel</h3></div><div class="time">10:15 – 11:15</div></div>
+  <div class="chips">
+    <span class="chips-label">Panélistes</span>
+    <span class="chip chip-panel">Prof. Elisabeth Yaoudam</span>
+    <span class="chip chip-panel">Mme TataPong Beyala</span>
+    <span class="chip chip-panel">M. Alain Djeumo</span>
+  </div></div></div>
 
-  <div class="ev"><div class="card c-po"><div class="accent"></div><div class="card-body"><div class="card-info"><span class="badge">Posters</span><h3><em>📊</em>Poster Oral Presentation</h3></div><div class="time">11:40 – 12:10</div></div></div></div>
+  <div class="ev"><div class="card c-po"><div class="card-body"><div class="card-info"><span class="badge">Posters</span><h3><em>📊</em>Poster Oral Presentation</h3></div><div class="time">12:00 – 12:30</div></div></div></div>
 
-  <div class="ev"><div class="card c-po"><div class="accent"></div><div class="card-body"><div class="card-info"><span class="badge">Posters</span><h3><em>🖼️</em>Poster Presentation</h3></div><div class="time">12:20 – 14:20</div></div></div></div>
+  <div class="ev"><div class="card c-bk"><div class="card-body"><div class="card-info"><span class="badge">Pause</span><h3><em>🍽️</em>Lunch</h3></div><div class="time">12:30 – 13:30</div></div></div></div>
 
-  <div class="ev"><div class="card c-bk"><div class="accent"></div><div class="card-body"><div class="card-info"><span class="badge">Pause</span><h3><em>🍽️</em>Lunch</h3></div><div class="time">14:20 – 15:00</div></div></div></div>
+  <div class="ev"><div class="card c-po"><div class="card-body"><div class="card-info"><span class="badge">Posters</span><h3><em>🖼️</em>Poster Presentation</h3></div><div class="time">13:30 – 15:00</div></div></div></div>
 
-  <div class="ev"><div class="card c-hk"><div class="accent"></div><div class="card-body"><div class="card-info"><span class="badge">Hackathon</span><h3><em>🚀</em>Pitch Hackathon Presentation</h3></div><div class="time">15:00 – 17:00</div></div></div></div>
+  <div class="ev"><div class="card c-hk"><div class="card-body"><div class="card-info"><span class="badge">Hackathon</span><h3><em>🚀</em>Pitch Hackathon Presentation</h3></div><div class="time">15:00 – 17:00</div></div>
+  <div class="chips">
+    <span class="chips-label">Équipes Finalistes</span>
+    <span class="chip chip-team">InsightX D_vas</span>
+    <span class="chip chip-team">AirSense</span>
+    <span class="chip chip-team">DPA Green Tech</span>
+    <span class="chip chip-team">AlphaInferaDeep</span>
+  </div></div></div>
 
 </div>
 
 <!-- ══════ JEUDI 14 MAI ══════ -->
 <div class="day" id="d3">
 
-  <div class="ev"><div class="card c-log"><div class="accent"></div><div class="card-body"><div class="card-info"><span class="badge">Registration</span><h3><em>📋</em>Arrival + Registration Desk</h3></div><div class="time">08:00 – 08:30</div></div></div></div>
+  <div class="ev"><div class="card c-log"><div class="card-body"><div class="card-info"><span class="badge">Registration</span><h3><em>📋</em>Arrival + Registration Desk</h3></div><div class="time">07:30 – 08:30</div></div></div></div>
 
-  <div class="ev"><div class="card c-rc"><div class="accent"></div><div class="card-body"><div class="card-info"><span class="badge">Recap</span><h3><em>📢</em>Recap Day 2 & Announcements</h3></div><div class="time">08:30 – 09:00</div></div></div></div>
+  <div class="ev"><div class="card c-rc"><div class="card-body"><div class="card-info"><span class="badge">Recap</span><h3><em>📢</em>Day 2 Recap & Announcements</h3></div><div class="time">08:30 – 09:00</div></div></div></div>
 
-  <div class="ev"><div class="card c-bk"><div class="accent"></div><div class="card-body"><div class="card-info"><span class="badge">Pause</span><h3><em>☕</em>Coffee Break & Networking</h3></div><div class="time">09:00 – 09:30</div></div></div></div>
-
-  <div class="ev"><div class="card c-ws"><div class="accent"></div><div class="card-body"><div class="card-info"><span class="badge">Workshops</span><h3><em>🧪</em>Tutorials & Workshops</h3></div><div class="time">09:30 – 11:30</div></div>
+  <div class="ev"><div class="card c-ws"><div class="card-body"><div class="card-info"><span class="badge">Workshops</span><h3><em>🧪</em>Parallel Sessions — Tutorials & Workshops</h3></div><div class="time">09:30 – 12:00</div></div>
   <div class="ws-grid">
-    <div class="ws"><span class="ws-n">WORKSHOP 4</span><p class="ws-t">Intégrer l'IA dans son application ou projet communautaire</p></div>
-    <div class="ws"><span class="ws-n">WORKSHOP 5</span><p class="ws-t">Projet Pratique — Détection des maladies du manioc</p></div>
-    <div class="ws"><span class="ws-n">WORKSHOP 6</span><p class="ws-t">Federated & Transfer Learning — Vision par Ordinateur Mobiles/Edge</p></div>
+    <div class="ws"><span class="ws-n">ROOM 1</span><p class="ws-t">Building a chatbot for agricultural education with IBM watsonx Assistant</p><p class="ws-s">👤 Abdoul Wahabou Kidakou</p></div>
+    <div class="ws"><span class="ws-n">ROOM 2</span><p class="ws-t">Explainable ML for Fruit Classification: African Plums Case Study</p><p class="ws-s">👤 Obaya Mureille Laure</p></div>
+    <div class="ws"><span class="ws-n">ROOM 3</span><p class="ws-t">End-to-End Cassava Disease Classification Pipeline with CNNs</p><p class="ws-s">👤 Sokdou Bila Lamou Yannick</p></div>
   </div></div></div>
 
-  <div class="ev"><div class="card c-sp"><div class="accent"></div><div class="card-body"><div class="card-info"><span class="badge">Sponsors</span><h3><em>🤝</em>Sponsor Sessions — Communautés Locales</h3></div><div class="time">11:30 – 12:30</div></div></div></div>
+  <div class="ev"><div class="card c-bk"><div class="card-body"><div class="card-info"><span class="badge">Pause</span><h3><em>☕</em>Coffee Break</h3></div><div class="time">12:00 – 12:30</div></div></div></div>
 
-  <div class="ev"><div class="card c-aw"><div class="accent"></div><div class="card-body"><div class="card-info"><span class="badge">Awards</span><h3><em>🏆</em>Awards & Closing Ceremony</h3></div><div class="time">12:30 – 14:30</div></div></div></div>
+  <div class="ev"><div class="card c-cm"><div class="card-body"><div class="card-info"><span class="badge">Communautés</span><h3><em>🌍</em>Presentation of AI Communities in Cameroon</h3></div><div class="time">12:30 – 13:00</div></div></div></div>
 
-  <div class="ev"><div class="card c-ce"><div class="accent"></div><div class="card-body"><div class="card-info"><span class="badge">Clôture</span><h3><em>🎬</em>Final Interviews & Dinner</h3><p class="sub">On your own</p></div><div class="time">Après 14:30</div></div></div></div>
+  <div class="ev"><div class="card c-bk"><div class="card-body"><div class="card-info"><span class="badge">Pause</span><h3><em>🍽️</em>Lunch</h3></div><div class="time">13:00 – 14:00</div></div></div></div>
+
+  <div class="ev"><div class="card c-aw"><div class="card-body"><div class="card-info"><span class="badge">Awards & Clôture</span><h3><em>🏆</em>Impact Award Winner, Closing Remarks & Competition Winners</h3><p class="sub">Hackathon and Poster Competition Winners Announced</p></div><div class="time">14:00 – 16:30</div></div></div></div>
 
 </div>
 
